@@ -1,0 +1,32 @@
+.box {
+    height: 52px;
+    max-width: 631px;
+
+    .inner {
+        display: flex;
+        min-height: 100%;
+
+        input {
+            background: #5A5C66;
+            border: 0;
+            width: calc(100% - 56px);
+            font-family: 'roboto';
+            font-size: 1.4rem;
+            padding-left: 26px;
+            color: #B2B7BF;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .icon {
+            display: flex;
+            height: 52px;
+            width: 52px;
+            justify-content: center;
+            align-items: center;
+            background: #5A5C66;
+        }
+    }
+}

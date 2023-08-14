@@ -1,0 +1,68 @@
+.box {
+    table {
+        table-layout: fixed;
+        border-collapse: collapse;
+        display: block;
+        width: 100%;
+        overflow-y: auto;
+        height: 82vh;
+
+        thead {
+            display: table;
+            position: sticky;
+            top: 0;
+            width: 100%;
+
+            tr {
+                th {
+
+                    background: #474955;
+                    height: 54px;
+
+                    &:nth-child(1) {
+
+                        width: 110px;
+                    }
+
+                    &:nth-child(2) {
+                        width: 40%;
+                    }
+
+                    span {
+                        color: white;
+                        font-size: 1.4rem;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            display: table-row-group;
+            display: block;
+
+            td {
+                height: 56px;
+                padding: 2.5rem 1rem;
+                background: white;
+                color: #474955;
+                font-size: 1.3rem;
+                font-weight: 500;
+                line-height: 1.79rem;
+                border: 1px solid #E3E6EC;
+
+                &:nth-child(1) {
+                    width: 110px;
+                    text-align: center;
+                }
+
+                &:nth-child(2) {
+                    width: 40%;
+                }
+            }
+        }
+    }
+}
+.iconUp {
+    transform: rotate(180deg);
+}

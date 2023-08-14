@@ -1,0 +1,21 @@
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        font-size: 2.4rem;
+        font-weight: 500;
+        background: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .active {
+        color: #7EBC3C;
+    }
+
+}
