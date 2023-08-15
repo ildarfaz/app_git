@@ -3,8 +3,6 @@ import { Button } from "../ui/button/Button";
 import styles from "./pagination.module.scss";
 import { IPagitation } from "../../types/common";
 
-
-
 export const Pagination: FC<IPagitation> = ({ total = 0, activePage, onChangeParams }) => {
     const totalPage = Math.floor(total / 10);
     const pages = Array.from(Array(totalPage + 1).keys()).slice(activePage - 5 > 0 ? activePage - 5 : 1, activePage + 6);
