@@ -7,7 +7,7 @@ export const searchApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.github.com/search' }),
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: ({query}) => `/users?q=${query}`,
+      query: ({query, page}) => `/users?q=${query}&page=${page}&per_page=${10}`,
     }),
   }),
 })

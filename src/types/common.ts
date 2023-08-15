@@ -1,27 +1,30 @@
 import { Dispatch, SetStateAction } from "react";
 import { IUser, IUsers } from "./users";
 
-export enum enumDirection {
+export enum enumOrder {
     "ASC" = "asc", "DESC" = "desc"
 }
-export interface ISort {
-    sort: {
-        column: string;
-        direction: enumDirection;
+export interface IParams {
+    params: {
+        sort: string;
+        order: enumOrder;
+        query: string;
+        page: number;
     },
-    onChangeSort: Dispatch<SetStateAction<{ column: string; direction: enumDirection; }>>;
+    onChangeParams: Dispatch<SetStateAction<{ sort: string; order: enumOrder; query: string; page: number; }>>;
 }
 
-export interface IContent extends ISort {
+export interface IContent extends IParams {
     data: {
         items: IUser[],
         total_count: number
     },
-    activePage: number;
-    onChangePage: Dispatch<SetStateAction<number>>;
+}
+export interface ITable extends IParams, IUsers {
 
 }
-
-export interface ITable extends ISort, IUsers {
-
+export interface IPagitation {
+    total: number;
+    activePage: number;
+    onChangeParams: Dispatch<SetStateAction<{ sort: string; order: enumOrder; query: string; page: number; }>>;
 }

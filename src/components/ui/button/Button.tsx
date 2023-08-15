@@ -5,12 +5,14 @@ type IButton = {
   children: JSX.Element | string;
   onClick: () => void;
   active?: boolean;
+  isDisabled?: boolean;
 }
-export const Button: FC<IButton> = ({ children, onClick, active }) => {
+export const Button: FC<IButton> = ({ children, onClick, active, isDisabled=false }) => {
   return (
     <div className={styles.box}>
       <button className={active ? styles.active : ''}
-        onClick={onClick}>{children}</button>
+        onClick={onClick}
+        disabled={isDisabled}>{children}</button>
     </div>
 
   )
