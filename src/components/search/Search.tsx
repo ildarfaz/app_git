@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styles from './search.module.scss';
 import { ReactComponent as IconSearch } from '../../assets/img/search.svg';
+import { debounce } from '../../utils/helpers';
 
 interface ISearch {
   onSearch: (data: string) => void;
@@ -9,7 +10,8 @@ interface ISearch {
 export const Search: FC<ISearch> = ({ onSearch }) => {
 
   const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onSearch(e.target.value);
+    console.log("");
+    debounce(onSearch(e.target.value), 250);
   }
 
   return (

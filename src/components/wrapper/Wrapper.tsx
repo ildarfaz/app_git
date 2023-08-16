@@ -12,21 +12,19 @@ export const Wrapper = () => {
 
     const [params, setParams] = useState(initialParams);
 
-    const { data, error, isLoading } = useGetUsersQuery({ ...params },
-        { skip: !params.query });
-
-
+    const { data, error, isLoading, isError, isSuccess} = useGetUsersQuery({ ...params },
+        { skip: !params.query  });
 
     const handlerSearch = (query: string) => {
         setParams((prev) => ({ ...prev, query }));
-        console.log(params.query, params.page);
+        console.log(params.query, params.page, data.items.length);
     }
-
+    console.log(isLoading, isError);
     return (<div className={styles.box}>
         <Search onSearch={handlerSearch} />
         {isLoading ? <p>Идет загрузка...</p> :
-            params.query && !error ? <Content data={data} params={params} onChangeParams={setParams} /> :
-                <p>{errorMessage(error) ?? "Введите поисковый запрос"}</p>
+            isSuccess && data.items.length ? <Content data={data} params={params} onChangeParams={setParams} /> :
+                <p>{isError ? errorMessage(error) : params.query ? "Не найдено" : "Введите поисковый запрос"}</p>
         }
     </div>)
 }

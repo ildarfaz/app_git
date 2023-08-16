@@ -6,6 +6,7 @@ export const searchApi = createApi({
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: ({ query, page }) => `/users?q=${query}&page=${page}&per_page=${10}`,
+      keepUnusedDataFor:0
     }),
   }),
 })

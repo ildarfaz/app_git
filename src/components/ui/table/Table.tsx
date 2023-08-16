@@ -23,7 +23,7 @@ export const Table: FC<ITable> = ({ users }) => {
     )
   })
 
-  const tableTd = users?.map(({ id, login, url }) => {
+  const tableTd = users?.length ? users.map(({ id, login, url }) => {
 
     return (
       <tr key={id}>
@@ -35,7 +35,10 @@ export const Table: FC<ITable> = ({ users }) => {
         </td>
       </tr>
     )
-  });
+  }) : <tr>
+    <td colSpan={3}>Не найдено</td>
+  </tr>
+    ;
 
   return (
     <div className={styles.box}>
@@ -45,11 +48,9 @@ export const Table: FC<ITable> = ({ users }) => {
             {tableTh}
           </tr>
         </thead>
-        {!users?.length ?
-          <p>Не найдено!</p> :
-          <tbody>
-            {tableTd}
-          </tbody>}
+        <tbody>
+          {tableTd}
+        </tbody>
       </table>
     </div>
   )
