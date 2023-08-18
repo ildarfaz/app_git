@@ -17,13 +17,12 @@ export const Wrapper = () => {
 
     const handlerSearch = (query: string) => {
         setParams((prev) => ({ ...prev, query }));
-        console.log(params.query, params.page, data.items.length);
     }
-    console.log(isLoading, isError);
+
     return (<div className={styles.box}>
         <Search onSearch={handlerSearch} />
         {isLoading ? <p>Идет загрузка...</p> :
-            isSuccess && data.items.length ? <Content data={data} params={params} onChangeParams={setParams} /> :
+            isSuccess && data?.items?.length ? <Content data={data} params={params} onChangeParams={setParams} /> :
                 <p>{isError ? errorMessage(error) : params.query ? "Не найдено" : "Введите поисковый запрос"}</p>
         }
     </div>)

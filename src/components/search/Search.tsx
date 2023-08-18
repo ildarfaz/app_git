@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import styles from './search.module.scss';
 import { ReactComponent as IconSearch } from '../../assets/img/search.svg';
-import { debounce } from '../../utils/helpers';
-
+import { debounce } from 'lodash';
 interface ISearch {
   onSearch: (data: string) => void;
 }
@@ -10,14 +9,13 @@ interface ISearch {
 export const Search: FC<ISearch> = ({ onSearch }) => {
 
   const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("");
-    debounce(onSearch(e.target.value), 250);
+    onSearch(e.target.value);
   }
 
   return (
     <div className={styles.box}>
       <div className={styles.inner}>
-        <input placeholder='Поиск' onChange={handlerChange} />
+        <input placeholder='Поиск' onChange={debounce(handlerChange, 250)} />
         <div className={styles.icon}>
           <IconSearch />
         </div>
