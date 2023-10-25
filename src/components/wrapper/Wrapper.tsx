@@ -9,21 +9,33 @@ import { errorMessage } from "../../utils/helpers";
 const initialParams = { sort: "id", order: enumOrder.DESC, query: "", page: 1 };
 
 export const Wrapper = () => {
+  const [params, setParams] = useState(initialParams);
 
-    const [params, setParams] = useState(initialParams);
+  const { data, error, isLoading, isError, isSuccess } = useGetUsersQuery(
+    { ...params },
+    { skip: !params.query },
+  );
 
-    const { data, error, isLoading, isError, isSuccess} = useGetUsersQuery({ ...params },
-        { skip: !params.query  });
+  const handlerSearch = (query: string) => {
+    setParams((prev) => ({ ...prev, query }));
+  };
 
-    const handlerSearch = (query: string) => {
-        setParams((prev) => ({ ...prev, query }));
-    }
-
-    return (<div className={styles.box}>
-        <Search onSearch={handlerSearch} />
-        {isLoading ? <p>Идет загрузка...</p> :
-            isSuccess && data?.items?.length ? <Content data={data} params={params} onChangeParams={setParams} /> :
-                <p>{isError ? errorMessage(error) : params.query ? "Не найдено" : "Введите поисковый запрос"}</p>
-        }
-    </div>)
-}
+  return (
+    <div className={styles.box}>
+      <Search onSearch={handlerSearch} />
+      {isLoading ? (
+        <p>Идет загрузка...</p>
+      ) : isSuccess && data?.items?.length ? (
+        <Content data={data} params={params} onChangeParams={setParams} />
+      ) : (
+        <p>
+          {isError
+            ? errorMessage(error)
+            : params.query
+            ? "Не найдено"
+            : "Введите поисковый запрос"}
+        </p>
+      )}
+    </div>
+  );
+};
